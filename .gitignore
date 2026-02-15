@@ -1,0 +1,7 @@
+.vs/
+.vscode/
+.DS_Sotre
+.build/
+!build/.gitkeep
+.tests/
+!tests/.gitkeep
