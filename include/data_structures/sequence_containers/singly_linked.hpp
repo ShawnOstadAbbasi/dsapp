@@ -71,13 +71,6 @@ namespace dsapp {
             Node<T>* head;
             int size;
         public:
-            ~singly_linked() {
-                while (head != nullptr) {
-                    Node<T>* temp = head;
-                    head = head->getNext();
-                    delete temp;
-                }
-            }
             friend std::ostream& operator<< <T>(std::ostream& strm, const singly_linked<T>& list);
             singly_linked() : head(nullptr), size(0) {}
             singly_linked(const singly_linked<T>& other) {
@@ -113,6 +106,13 @@ namespace dsapp {
                     }
                 }
                 return *this;
+            }
+            ~singly_linked() {
+                while (head != nullptr) {
+                    Node<T>* temp = head;
+                    head = head->getNext();
+                    delete temp;
+                }
             }
             void push_front(T value) {
                 Node<T>* oldHead = head;
@@ -156,6 +156,20 @@ namespace dsapp {
                 current->setNext(nullptr);
                 size--;
 
+            }
+            void insert(T value, int index) {
+                if (index >= size || index < 0) return;
+                if (index == 0) {
+                    push_front(value);
+                    return;
+                }
+                Node<T>* current = head;
+                for (int indexBeforeAdded = 0; indexBeforeAdded < index - 1; indexBeforeAdded++) {
+                    current = current->getNext();
+                }
+                Node<T>* oldNodeAtIndex = current->getNext();
+                current->setNext(new Node(value, oldNodeAtIndex));
+                size++;
             }
             Node<T>* getHead() {
                 return head;

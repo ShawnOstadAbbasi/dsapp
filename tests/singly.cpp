@@ -36,6 +36,17 @@ int main() {
     std::cout << "\n";
     std::cout << list << std::endl;
     std::cout << list2 << std::endl;
-    
+
+    list.insert(49, 0);
+    std::cout << list << std::endl;
+    list.insert(34, 4);
+    std::cout << list << std::endl;
+    list.insert(78, 7);
+    std::cout << list << std::endl;
+    list.insert(999, 10);
+    std::cout << list << std::endl;
+    list.insert(555, -1);
+    std::cout << list << std::endl;
+
     return 0;
 }
