@@ -29,14 +29,15 @@ int main() {
     std::cout << list << std::endl;
     std::cout << list2 << std::endl;
 
-    list2.pop_font();
-    list2.pop_font();
-    list2.pop_font();
+    list2.pop_front();
+    list2.pop_front();
+    list2.pop_front();
 
     std::cout << "\n";
     std::cout << list << std::endl;
     std::cout << list2 << std::endl;
 
+    std::cout << "\nNOW INSERTING\n";
     list.insert(49, 0);
     std::cout << list << std::endl;
     list.insert(34, 4);
@@ -47,6 +48,49 @@ int main() {
     std::cout << list << std::endl;
     list.insert(555, -1);
     std::cout << list << std::endl;
+
+    std::cout << "\nNOW REMOVING\n";
+
+    list.remove(-1);
+    std::cout << list << std::endl;
+    list.remove(32);
+    std::cout << list << std::endl;
+    list.remove(0);
+    std::cout << list << std::endl;
+    list.remove(1);
+    std::cout << list << std::endl;
+    list.remove(3);
+    std::cout << list << std::endl;
+    list.remove(5);
+    std::cout << list << std::endl;
+
+    std::cout << "\nINDEXING" << std::endl;
+    std::cout << list[0] << std::endl;
+    list[0] = 37;
+    std::cout << list << std::endl;
+
+    std::cout << "\nREVERSE" << std::endl;
+    list.reverse();
+    std::cout << list << std::endl;
+
+    list.pop_back();
+    list.pop_back();
+    std::cout << list << std::endl;
+    list.reverse();
+    std::cout << list << std::endl;
+
+    std::cout << "\nREMOVE" << std::endl;
+    list.remove(-1);
+    std::cout << list << std::endl;
+    list.remove(89);
+    std::cout << list << std::endl;
+    list.remove(1);
+    std::cout << list << std::endl;
+    list.remove(1);
+    std::cout << list << std::endl;
+    list.remove(0);
+    std::cout << list << std::endl;
+
 
     return 0;
 }
