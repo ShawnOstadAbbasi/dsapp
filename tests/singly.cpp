@@ -4,37 +4,38 @@
 int main() {
     dsapp::singly_linked<int> list;
     list.push_back(1);
-    //std::cout << list << std::endl;
     list.push_back(2);
-    //std::cout << list << std::endl;
-
     list.push_back(3);
     list.push_back(4);
 
-    //std::cout << list << std::endl;
-
     dsapp::singly_linked<int> list2 = list;
-    std::cout << "list head address: " << list.getHead() << std::endl;
-    std::cout << "list2 head address: " << list2.getHead() << std::endl;
+
     std::cout << list << std::endl;
     std::cout << list2 << std::endl;
 
+    list.push_front(15);
+    list.push_back(50);
+
     list2.pop_back();
-    std::cout << list2 << std::endl;
-    list2.pop_back();
+
+    std::cout << "\n";
+    std::cout << list << std::endl;
     std::cout << list2 << std::endl;
 
-    list2.push_front(25);
+    list.getHead()->getNext()->setValue(99);
+    list.getHead()->getNext()->getNext()->setValue(666);
+
+    std::cout << "\n";
+    std::cout << list << std::endl;
     std::cout << list2 << std::endl;
 
     list2.pop_font();
+    list2.pop_font();
+    list2.pop_font();
+
+    std::cout << "\n";
+    std::cout << list << std::endl;
     std::cout << list2 << std::endl;
-
-    list = list2;
-    std::cout << "List address " << &list << ", " << list << std::endl;
-    std::cout << "List2 address " << &list2 << ", " << list2 << std::endl;
-
-    std::cout << "DONE" << std::endl;
-
+    
     return 0;
 }

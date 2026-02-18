@@ -6,7 +6,6 @@ namespace {
     template<typename T>
     std::ostream& operator<<(std::ostream& strm, const Node<T>& node);
 
-
     template<typename T>
     class Node {
         private:
@@ -18,13 +17,12 @@ namespace {
             Node(T value, Node* next) : value(value), next(next) {}
             Node(const Node<T>& other) {
                 value = other.value;
-                next = (other.next) ? new Node<T>(*other.next) : nullptr;
+                next = other.next;
             }
             Node& operator=(const Node<T>& other) {
                 if (this != &other) {
-                    delete next;
                     value = other.value;
-                    next = (other.next) ? new Node<T>(*other.next) : nullptr;
+                    next = other.next;
                 }
                 return *this;
             }
@@ -33,7 +31,6 @@ namespace {
             }
             Node& operator=(Node<T>&& other) {
                 if (this != &other) {
-                    delete next;
                     value = std::move(other.value);
                     next = other.next;
                     other.next = nullptr;
@@ -43,17 +40,14 @@ namespace {
             T getValue() const {
                 return value;
             }
-            void setValue(T* newValue) {
+            void setValue(T newValue) {
                 value = newValue;
             }
             Node* getNext() const {
                 return next;
             }
             void setNext(Node<T>* newNext) {
-                if (next != newNext) {
-                    delete next;
-                    next = newNext;
-                }
+                next = newNext;
             }
     };
 
@@ -82,26 +76,43 @@ namespace dsapp {
                     Node<T>* temp = head;
                     head = head->getNext();
                     delete temp;
-                    std::cout << "DEL";
                 }
             }
             friend std::ostream& operator<< <T>(std::ostream& strm, const singly_linked<T>& list);
             singly_linked() : head(nullptr), size(0) {}
             singly_linked(const singly_linked<T>& other) {
-                head = new Node<T>(*(other.head));
-                size = other.size;
+                if (!other.head)
+                    return;
+
+                head = new Node(other.head->getValue());
+                Node<T>* current = head;
+                Node<T>* currentOther = other.head->getNext();
+
+                while (currentOther) {
+                    current->setNext(new Node<T>(currentOther->getValue()));
+                    current = current->getNext();
+                    currentOther = currentOther->getNext();
+                }
             }
-            singly_linked& operator=(const Node<T>& other) {
-                if (this != &other) {
+            singly_linked& operator=(const singly_linked<T>& other) {
+                if (this != &other || !other.head) {
                     while (head != nullptr) {
                         Node<T>* temp = head;
                         head = head->getNext();
                         delete temp;
                     }
-                    head = new Node<T>(*other.head);
-                    size = other.size;
 
+                    head = new Node(other.head->getValue());
+                    Node<T>* current = head;
+                    Node<T>* currentOther = other.head->getNext();
+                    
+                    while (currentOther) {
+                        current->setNext(new Node<T>(currentOther->getValue()));
+                        current = current->getNext();
+                        currentOther = currentOther->getNext();
+                    }
                 }
+                return *this;
             }
             void push_front(T value) {
                 Node<T>* oldHead = head;
