@@ -79,7 +79,7 @@ int main() {
     list.reverse();
     std::cout << list << std::endl;
 
-    std::cout << "\nREMOVE" << std::endl;
+    std::cout << "\nREMOVE" << std::endl; 
     list.remove(-1);
     std::cout << list << std::endl;
     list.remove(89);
