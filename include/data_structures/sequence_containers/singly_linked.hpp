@@ -86,13 +86,14 @@ namespace dsapp {
                 return currentNode->getValueRef();
             }
             singly_linked() : head(nullptr), size(0) {}
-            singly_linked(const singly_linked<T>& other) {
+            singly_linked(const singly_linked<T>& other) : head(nullptr), size(0) {
                 if (!other.head)
                     return;
 
-                head = new Node(other.head->getValue());
+                head = new Node<T>(other.head->getValue());
                 Node<T>* current = head;
                 Node<T>* currentOther = other.head->getNext();
+                size = other.size;
 
                 while (currentOther) {
                     current->setNext(new Node<T>(currentOther->getValue()));
@@ -100,6 +101,7 @@ namespace dsapp {
                     currentOther = currentOther->getNext();
                 }
             }
+            // Check this out
             singly_linked& operator=(const singly_linked<T>& other) {
                 if (this != &other || !other.head) {
                     while (head != nullptr) {
@@ -108,7 +110,7 @@ namespace dsapp {
                         delete temp;
                     }
 
-                    head = new Node(other.head->getValue());
+                    head = new Node<T>(other.head->getValue());
                     Node<T>* current = head;
                     Node<T>* currentOther = other.head->getNext();
                     
@@ -181,7 +183,7 @@ namespace dsapp {
                     current = current->getNext();
                 }
                 Node<T>* oldNodeAtIndex = current->getNext();
-                current->setNext(new Node(value, oldNodeAtIndex));
+                current->setNext(new Node<T>(value, oldNodeAtIndex));
                 size++;
             }
             void remove(int index) {
