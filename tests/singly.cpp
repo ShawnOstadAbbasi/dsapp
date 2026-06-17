@@ -79,6 +79,14 @@ int main() {
     list.reverse();
     std::cout << list << std::endl;
 
+
+    std::cout << "\nNOW PRINTING INDIVIDUAL ELEMENTS IN LIST USING []\n";
+    for (int index = 0; index < list.getSize(); index++) {
+        std::cout << list[index] << "\t";
+    }
+    std::cout << std::endl;
+
+
     std::cout << "\nREMOVE" << std::endl; 
     list.remove(-1);
     std::cout << list << std::endl;
