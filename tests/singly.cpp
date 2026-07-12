@@ -1,5 +1,5 @@
 #include <iostream>
-#include "../include/data_structures/sequence_containers/singly_linked.hpp"
+#include "data_structures/sequence_containers/singly_linked.hpp"
 
 int main() {
     dsapp::singly_linked<int> list;
