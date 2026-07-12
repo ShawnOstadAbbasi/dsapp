@@ -1,3 +1,8 @@
+/**
+ * @note If T is a user-defined type, it must provide an overload of
+ *       `std::ostream& operator<<(std::ostream&, const T&)`
+ *       to support stream output.
+ */ 
 #include <iostream>
 namespace {
     template <typename T> 
